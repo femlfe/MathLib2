@@ -1,4 +1,4 @@
-name: Build and Test  Parallel Workflow
+name: Build and Test Parallel Workflow
 
 on: [push]
 
@@ -13,31 +13,59 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.x'
+    
     - name: Restore dependencies
       run: dotnet restore
+    
     - name: Build solution
       run: dotnet build --no-restore --configuration Debug
 
   test:
     needs: build
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+    
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+    
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.x'
+    
     - name: Restore dependencies
       run: dotnet restore
-
+    
+    - name: Build for test
+      run: dotnet build --no-restore --configuration ${{ matrix.configuration }}
+    
     - name: Run tests
-      run: dotnet test --no-build --configuration Release --verbosity normal
+      run: dotnet test --no-build --configuration ${{ matrix.configuration }} --verbosity normal
+
   analyze:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Run code analysis
-        run: dotnet tool install -g dotnet-format && dotnet format src/MathLib.csproj
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.x'
+    
+    - name: Debug project structure
+      run: |
+        echo "=== Project files ==="
+        find . -name "*.csproj" -type f
+        echo "=== Current directory ==="
+        pwd
+        ls -la
+    
+    - name: Run code analysis and formatting
+      run: |
+        dotnet tool install -g dotnet-format
+        dotnet format --verify-no-changes --verbosity diagnostic
