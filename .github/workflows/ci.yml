@@ -3,30 +3,27 @@ name: Build and Test  Parallel Workflow
 on: [push]
 
 jobs:
-  build-and-test-debug:
+  build:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.x'
     - name: Restore dependencies
       run: dotnet restore
-
     - name: Build solution
       run: dotnet build --no-restore --configuration Debug
 
-    - name: Run tests
-      run: dotnet test --no-build --configuration Debug --verbosity normal
-  build-and-test-release:
+  test:
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
@@ -34,9 +31,13 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
 
-    - name: Build solution
-      run: dotnet build --no-restore --configuration Release
-
     - name: Run tests
       run: dotnet test --no-build --configuration Release --verbosity normal
-  
+  analyze:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Run code analysis
+        run: dotnet tool install -g dotnet-format && dotnet format src/MathLib.csproj
