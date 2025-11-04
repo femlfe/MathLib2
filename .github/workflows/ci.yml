@@ -3,12 +3,13 @@ name: Build and Test Parallel Workflow
 on: [push]
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         configuration: [Debug, Release]
-    
+    outputs:
+      build-output: ${{ steps.set-output.outputs.build-output }}
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -24,8 +25,49 @@ jobs:
     - name: Build with output (${{ matrix.configuration }})
       run: dotnet build --no-restore --configuration ${{ matrix.configuration }} --output ./output/${{ matrix.configuration }}
 
+    - name: Set build output
+      id: set-output
+      run: echo "build-output=./output/${{ matrix.configuration }}" >> $GITHUB_OUTPUT
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+    needs: build
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.x'
+    
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build for tests (${{ matrix.configuration }})
+      run: dotnet build --no-restore --configuration ${{ matrix.configuration }}
+
     - name: Run tests (${{ matrix.configuration }})
       run: dotnet test --no-build --configuration ${{ matrix.configuration }} --verbosity normal
+
+  upload-artifacts:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+    needs: build
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Download build outputs
+      uses: actions/download-artifact@v4
+      with:
+        name: build-output-${{ matrix.configuration }}
+        path: ./output/${{ matrix.configuration }}
 
     - name: Upload artifacts (${{ matrix.configuration }})
       uses: actions/upload-artifact@v4
