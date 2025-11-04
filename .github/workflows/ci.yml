@@ -21,24 +21,16 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
 
-    - name: Build solution (${{ matrix.configuration }})
-      run: dotnet build --no-restore --configuration ${{ matrix.configuration }} --output ./bin/${{ matrix.configuration }}
+    - name: Build with output (${{ matrix.configuration }})
+      run: dotnet build --no-restore --configuration ${{ matrix.configuration }} --output ./output/${{ matrix.configuration }}
 
     - name: Run tests (${{ matrix.configuration }})
       run: dotnet test --no-build --configuration ${{ matrix.configuration }} --verbosity normal
-
-    - name: Create artifacts directory
-      run: |
-        mkdir -p artifacts
-        cp -r ./bin/${{ matrix.configuration }}/* ./artifacts/ 2>/dev/null || true
-
-    - name: Zip artifacts (${{ matrix.configuration }})
-      run: |
-        zip -r ${{ matrix.configuration }}-build-${{ github.sha }}.zip ./artifacts/
 
     - name: Upload artifacts (${{ matrix.configuration }})
       uses: actions/upload-artifact@v4
       with:
         name: ${{ matrix.configuration }}-build
-        path: ${{ matrix.configuration }}-build-${{ github.sha }}.zip
+        path: ./output/${{ matrix.configuration }}/
+        if-no-files-found: warn
         retention-days: 30
