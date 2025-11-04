@@ -21,7 +21,7 @@ jobs:
 
     - name: Run tests
       run: dotnet test --no-build --configuration Debug --verbosity normal
-  build-and-test-reliase:
+  build-and-test-release:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
@@ -35,8 +35,8 @@ jobs:
       run: dotnet restore
 
     - name: Build solution
-      run: dotnet build --no-restore --configuration Reliase
+      run: dotnet build --no-restore --configuration Release
 
     - name: Run tests
-      run: dotnet test --no-build --configuration Reliase --verbosity normal
+      run: dotnet test --no-build --configuration Release --verbosity normal
   
