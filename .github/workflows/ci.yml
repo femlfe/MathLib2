@@ -45,27 +45,20 @@ jobs:
     - name: Run tests
       run: dotnet test --no-build --configuration ${{ matrix.configuration }} --verbosity normal
 
-  analyze:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-    
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '8.x'
-    
-    - name: Debug project structure
-      run: |
-        echo "=== Project files ==="
-        find . -name "*.csproj" -type f
-        echo "=== Current directory ==="
-        pwd
-        ls -la
-    
-    - name: Run code analysis and formatting
-      run: |
-        dotnet tool install -g dotnet-format
-        dotnet format --verify-no-changes --verbosity diagnostic
+analyze:
+  needs: build
+  runs-on: ubuntu-latest
+  steps:
+  - name: Checkout code
+    uses: actions/checkout@v4
+  
+  - name: Setup .NET
+    uses: actions/setup-dotnet@v4
+    with:
+      dotnet-version: '8.x'
+  
+  - name: Install format tool
+    run: dotnet tool install -g dotnet-format
+  
+  - name: Check code formatting
+    run: dotnet format --verify-no-changes --verbosity diagnostic
