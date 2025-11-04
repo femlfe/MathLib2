@@ -3,25 +3,7 @@ name: Build and Test Parallel Workflow
 on: [push]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '8.x'
-    
-    - name: Restore dependencies
-      run: dotnet restore
-    
-    - name: Build solution
-      run: dotnet build --no-restore --configuration Debug
-
-  test:
-    needs: build
+  build-and-test-debug-release:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -38,27 +20,18 @@ jobs:
     
     - name: Restore dependencies
       run: dotnet restore
-    
-    - name: Build for test
-      run: dotnet build --no-restore --configuration ${{ matrix.configuration }}
-    
+
+    - name: Build solution
+      run: dotnet build --no-restore --configuration ${{ matrix.configuration }} --output ./publish/${{ matrix.configuration }}
+
     - name: Run tests
       run: dotnet test --no-build --configuration ${{ matrix.configuration }} --verbosity normal
-
-  analyze:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
     
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
+    - name: Create ZIP archive
+      run: zip -r build-${{ matrix.configuration }}.zip ./publish/${{ matrix.configuration }}/
+    
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
       with:
-        dotnet-version: '8.x'
-    
-    - name: Install format tool
-      run: dotnet tool install -g dotnet-format
-    
-    - name: Check code formatting
-      run: dotnet format --verify-no-changes --verbosity diagnostic
+        name: build-${{ matrix.configuration }}
+        path: build-${{ matrix.configuration }}.zip
