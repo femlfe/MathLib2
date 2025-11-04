@@ -1,4 +1,4 @@
-name: Build and Test Matrix
+name: Build and Test Parallel Workflow
 
 on: [push]
 
@@ -25,7 +25,7 @@ jobs:
       run: dotnet build --no-restore --configuration ${{ matrix.configuration }} --output ./publish/${{ matrix.configuration }}
 
     - name: Run tests
-      run: dotnet test --no-build --configuration ${{ matrix.configuration }} --verbosity normal
+      run: dotnet test --no-build --configuration ${{ matrix.configuration }} --verbosity normal --logger "console;verbosity=normal"
     
     - name: Create ZIP archive
       run: zip -r build-${{ matrix.configuration }}.zip ./publish/${{ matrix.configuration }}/
