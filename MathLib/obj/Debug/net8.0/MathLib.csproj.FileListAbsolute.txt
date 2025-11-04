@@ -1,0 +1,11 @@
+C:\Users\femlf\source\repos\MathLib\MathLib\bin\Debug\net8.0\MathLib.deps.json
+C:\Users\femlf\source\repos\MathLib\MathLib\bin\Debug\net8.0\MathLib.dll
+C:\Users\femlf\source\repos\MathLib\MathLib\bin\Debug\net8.0\MathLib.pdb
+C:\Users\femlf\source\repos\MathLib\MathLib\obj\Debug\net8.0\MathLib.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\femlf\source\repos\MathLib\MathLib\obj\Debug\net8.0\MathLib.AssemblyInfoInputs.cache
+C:\Users\femlf\source\repos\MathLib\MathLib\obj\Debug\net8.0\MathLib.AssemblyInfo.cs
+C:\Users\femlf\source\repos\MathLib\MathLib\obj\Debug\net8.0\MathLib.csproj.CoreCompileInputs.cache
+C:\Users\femlf\source\repos\MathLib\MathLib\obj\Debug\net8.0\MathLib.dll
+C:\Users\femlf\source\repos\MathLib\MathLib\obj\Debug\net8.0\refint\MathLib.dll
+C:\Users\femlf\source\repos\MathLib\MathLib\obj\Debug\net8.0\MathLib.pdb
+C:\Users\femlf\source\repos\MathLib\MathLib\obj\Debug\net8.0\ref\MathLib.dll
