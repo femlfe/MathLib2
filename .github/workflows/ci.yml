@@ -1,4 +1,4 @@
-name: Build and Test Parallel Workflow
+name: Build and Test Matrix
 
 on: [push]
 
