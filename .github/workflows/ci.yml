@@ -16,10 +16,10 @@ jobs:
         dotnet-version: '8.x'
     
     - name: Restore dependencies
-      run: dotnet restore ../../MathLib.sln  
+      run: dotnet restore ../../MathLib.slnx  
     
     - name: Build solution
-      run: dotnet build ../../MathLib.sln --no-restore --configuration Release
+      run: dotnet build ../../MathLib.slnx --no-restore --configuration Release
       
     - name: Run tests
       run: dotnet test --no-build --configuration Release --verbosity normal
