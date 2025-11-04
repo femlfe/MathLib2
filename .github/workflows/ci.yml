@@ -8,8 +8,6 @@ jobs:
     strategy:
       matrix:
         configuration: [Debug, Release]
-    outputs:
-      build-output: ${{ steps.set-output.outputs.build-output }}
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -25,9 +23,12 @@ jobs:
     - name: Build with output (${{ matrix.configuration }})
       run: dotnet build --no-restore --configuration ${{ matrix.configuration }} --output ./output/${{ matrix.configuration }}
 
-    - name: Set build output
-      id: set-output
-      run: echo "build-output=./output/${{ matrix.configuration }}" >> $GITHUB_OUTPUT
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-output-${{ matrix.configuration }}
+        path: ./output/${{ matrix.configuration }}/
+        retention-days: 1
 
   test:
     runs-on: ubuntu-latest
@@ -53,26 +54,25 @@ jobs:
     - name: Run tests (${{ matrix.configuration }})
       run: dotnet test --no-build --configuration ${{ matrix.configuration }} --verbosity normal
 
-  upload-artifacts:
+  publish-artifacts:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         configuration: [Debug, Release]
-    needs: build
+    needs: [build, test]
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Download build outputs
+    - name: Download build artifacts
       uses: actions/download-artifact@v4
       with:
         name: build-output-${{ matrix.configuration }}
-        path: ./output/${{ matrix.configuration }}
+        path: ./downloaded-artifacts/${{ matrix.configuration }}
 
-    - name: Upload artifacts (${{ matrix.configuration }})
+    - name: List downloaded files
+      run: ls -la ./downloaded-artifacts/${{ matrix.configuration }}/
+
+    - name: Upload final artifacts (${{ matrix.configuration }})
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ matrix.configuration }}-build
-        path: ./output/${{ matrix.configuration }}/
-        if-no-files-found: warn
+        name: ${{ matrix.configuration }}-final-build
+        path: ./downloaded-artifacts/${{ matrix.configuration }}/
         retention-days: 30
