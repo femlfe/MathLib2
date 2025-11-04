@@ -27,15 +27,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "MathLib",
+              "Title": "MathLib.csproj",
               "DocumentMoniker": "C:\\Users\\femlf\\source\\repos\\MathLib\\MathLib\\MathLib.csproj",
               "RelativeDocumentMoniker": "MathLib\\MathLib.csproj",
               "ToolTip": "C:\\Users\\femlf\\source\\repos\\MathLib\\MathLib\\MathLib.csproj",
               "RelativeToolTip": "MathLib\\MathLib.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-11-04T07:31:50.132Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-04T07:31:50.132Z"
             },
             {
               "$type": "Document",
@@ -47,8 +46,7 @@
               "RelativeToolTip": "MathLibTests\\UnitTest1.cs",
               "ViewState": "AgIAAAIAAAAAAAAAAAAuwBYAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-03T14:00:47.694Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-03T14:00:47.694Z"
             },
             {
               "$type": "Document",
@@ -58,7 +56,7 @@
               "RelativeDocumentMoniker": "MathLib\\Class1.cs",
               "ToolTip": "C:\\Users\\femlf\\source\\repos\\MathLib\\MathLib\\Class1.cs",
               "RelativeToolTip": "MathLib\\Class1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-03T13:57:55.427Z",
               "EditorCaption": ""

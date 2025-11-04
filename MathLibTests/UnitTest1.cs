@@ -27,7 +27,7 @@ namespace MathLibTests
             var result = culculation.Factorial(4);
 
             // Assert
-            Assert.Equal(2 ,result);
+            Assert.Equal(24 ,result);
         }
     }
 }

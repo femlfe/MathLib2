@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\femlf\\source\\repos\\MathLib\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F0209E6A-345F-F405-6B9A-4E3BDD276C4D}|MathLibTests\\MathLibTests.csproj|c:\\users\\femlf\\source\\repos\\mathlib\\mathlibtests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F0209E6A-345F-F405-6B9A-4E3BDD276C4D}|MathLibTests\\MathLibTests.csproj|solutionrelative:mathlibtests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{55DFA549-B0FC-D9C5-BC4A-57B383828689}|MathLib\\MathLib.csproj|c:\\users\\femlf\\source\\repos\\mathlib\\mathlib\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{55DFA549-B0FC-D9C5-BC4A-57B383828689}|MathLib\\MathLib.csproj|solutionrelative:mathlib\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{55DFA549-B0FC-D9C5-BC4A-57B383828689}|MathLib\\MathLib.csproj|c:\\users\\femlf\\source\\repos\\mathlib\\mathlib\\mathlib.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{55DFA549-B0FC-D9C5-BC4A-57B383828689}|MathLib\\MathLib.csproj|solutionrelative:mathlib\\mathlib.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F0209E6A-345F-F405-6B9A-4E3BDD276C4D}|MathLibTests\\MathLibTests.csproj|c:\\users\\femlf\\source\\repos\\mathlib\\mathlibtests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F0209E6A-345F-F405-6B9A-4E3BDD276C4D}|MathLibTests\\MathLibTests.csproj|solutionrelative:mathlibtests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,11 +22,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "MathLib.csproj",
               "DocumentMoniker": "C:\\Users\\femlf\\source\\repos\\MathLib\\MathLib\\MathLib.csproj",
               "RelativeDocumentMoniker": "MathLib\\MathLib.csproj",
@@ -38,19 +38,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "UnitTest1.cs",
               "DocumentMoniker": "C:\\Users\\femlf\\source\\repos\\MathLib\\MathLibTests\\UnitTest1.cs",
               "RelativeDocumentMoniker": "MathLibTests\\UnitTest1.cs",
               "ToolTip": "C:\\Users\\femlf\\source\\repos\\MathLib\\MathLibTests\\UnitTest1.cs",
               "RelativeToolTip": "MathLibTests\\UnitTest1.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAuwBYAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAxwB0AAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-03T14:00:47.694Z"
+              "WhenOpened": "2025-11-03T14:00:47.694Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Class1.cs",
               "DocumentMoniker": "C:\\Users\\femlf\\source\\repos\\MathLib\\MathLib\\Class1.cs",
               "RelativeDocumentMoniker": "MathLib\\Class1.cs",
