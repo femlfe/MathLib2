@@ -14,12 +14,11 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.x'
-    
     - name: Restore dependencies
-      run: dotnet restore ../../MathLib.slnx  
-    
+      run: dotnet restore
+
     - name: Build solution
-      run: dotnet build ../../MathLib.slnx --no-restore --configuration Release
-      
+      run: dotnet build --no-restore --configuration Release
+
     - name: Run tests
       run: dotnet test --no-build --configuration Release --verbosity normal
