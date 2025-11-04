@@ -1,10 +1,14 @@
-name: Build and Test  Parallel Workflow
+name: Build and Test Parallel Workflow
 
 on: [push]
 
 jobs:
-  build-and-test-debug:
+  build-and-test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+    
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -13,11 +17,12 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.x'
+    
     - name: Restore dependencies
       run: dotnet restore
 
-    - name: Build solution
-      run: dotnet build --no-restore --configuration Debug
+    - name: Build solution (${{ matrix.configuration }})
+      run: dotnet build --no-restore --configuration ${{ matrix.configuration }}
 
-    - name: Run tests
-      run: dotnet test --no-build --configuration Debug --verbosity normal
+    - name: Run tests (${{ matrix.configuration }})
+      run: dotnet test --no-build --configuration ${{ matrix.configuration }} --verbosity normal
